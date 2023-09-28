@@ -1,5 +1,6 @@
 import React from 'react'
 import '../custom.css'
+import { Link } from 'react-router-dom';
 
 export default function UsersBooksPage() {
   return (
@@ -7,7 +8,7 @@ export default function UsersBooksPage() {
     <div class="container">
         <h1>BookApp</h1>
         <h2>User Books Page</h2>
-        <button className="btn btn-primary">Back to Users</button>
+        <Link to="/" className="icon-button">Back to Users</Link>
     <div class="row">
           {/* Primera columna */}
           <div className="col-sm-6 input-container">
@@ -72,20 +73,20 @@ export default function UsersBooksPage() {
                                     <p >1</p>
                                 </td>
                                 <td style={{width: '10%'}}>
-                                    <button className="icon-button table-link">
+                                    <Link to="/books-details/:id" className="icon-button table-link">
                                         <span class="fa-stack">
                                             <i class="fa fa-square fa-stack-2x"></i>
                                             <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
                                         </span>
-                                    </button>
-                                    <button className="icon-button" >
+                                    </Link>
+                                    <Link to="/books-details/:id"className="icon-button" >
                                         <span class="fa-stack">
                                             
                                             <i class="fa fa-square fa-stack-2x"></i>
                                             <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
                                             
                                         </span>
-                                    </button>
+                                    </Link>
                                     <button className="icon-button-red" >
                                         <span class="fa-stack">
                                             <i class="fa fa-square fa-stack-2x"></i>

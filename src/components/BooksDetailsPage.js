@@ -1,5 +1,6 @@
 import React from 'react'
 import '../custom.css'
+import { Link } from 'react-router-dom';
 
 export default function BooksDetailsPage() {
   return (
@@ -7,7 +8,7 @@ export default function BooksDetailsPage() {
     <div class="container">
         <h1>BookApp</h1>
         <h2>Books Details Page</h2>
-        <button className="btn btn-primary">Back to Books</button>
+        <Link to="/users-books" className="icon-button">Back to Books</Link>
     <div class="row">
         {/* Primera columna */}
         <div class="col-sm-6 user-list-container">
@@ -28,7 +29,7 @@ export default function BooksDetailsPage() {
                         </thead>
                         <tbody>
                             <tr>
-                                <td> 
+                                <td style={{width: '12%'}}> 
                                     <a href="#" class="user-link">Libro Test </a>
                                 </td>
                                 <td>
@@ -46,28 +47,7 @@ export default function BooksDetailsPage() {
                                 <td> 
                                     <p >22/11/2020</p>
                                 </td>
-                                <td style={{width: '9%'}}>
-                                    <button className="icon-button table-link">
-                                        <span class="fa-stack">
-                                            <i class="fa fa-square fa-stack-2x"></i>
-                                            <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </button>
-                                    <button className="icon-button" >
-                                        <span class="fa-stack">
-                                            
-                                            <i class="fa fa-square fa-stack-2x"></i>
-                                            <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                                            
-                                        </span>
-                                    </button>
-                                    <button className="icon-button-red" >
-                                        <span class="fa-stack">
-                                            <i class="fa fa-square fa-stack-2x"></i>
-                                            <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </button>
-                                </td>
+                                
                             </tr>
                                                                           
                         </tbody>

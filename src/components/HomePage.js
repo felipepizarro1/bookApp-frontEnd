@@ -1,5 +1,6 @@
 import React from 'react'
 import '../custom.css'
+import { Link } from 'react-router-dom';
 
 export default function HomePage() {
   return (
@@ -54,12 +55,12 @@ export default function HomePage() {
                                     <a href="#">mila@kunis.com</a>
                                 </td>
                                 <td style={{width: '4%'}}>
-                                    <button className="icon-button table-link">
+                                    <Link to="/users-books" className="icon-button table-link">
                                         <span class="fa-stack">
                                             <i class="fa fa-square fa-stack-2x"></i>
                                             <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
                                         </span>
-                                    </button>
+                                    </Link>
                                 </td>
                             </tr>
                                                                        
