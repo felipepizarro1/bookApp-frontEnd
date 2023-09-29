@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function HomePage() {
+    
     const [user, setUser] = useState({ nome: '', cognome: '', email: '' });
     const [userList, setUserList] = useState([]);
 
@@ -93,7 +94,7 @@ export default function HomePage() {
                                     <a href="#">{user.email}</a>
                                 </td>
                                 <td style={{width: '4%'}}>
-                                    <Link to="/users-books" className="icon-button table-link">
+                                    <Link to={`/users-books/${user.id}`} className="icon-button table-link">
                                         <span class="fa-stack">
                                             <i class="fa fa-square fa-stack-2x"></i>
                                             <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>

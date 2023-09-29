@@ -1,14 +1,62 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import '../custom.css'
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 export default function BooksDetailsPage() {
+    const { id, bookId } = useParams();
+    const [book, setBook] = useState({
+    titolo: '',
+    autore: '',
+    codiceISBN: '',
+    trama: '',
+    numeroLetture: '',
+    dataAggiunta: '',
+  });
+
+    // Función para cargar los detalles del libro con el ID específico
+    const loadBookDetails = () => {
+        axios.get(`http://localhost:8080/books/${bookId}`)
+          .then((response) => {
+            const bookData = response.data;
+            setBook({
+              titolo: bookData.titolo,
+              autore: bookData.autore,
+              codiceISBN: bookData.codiceISBN,
+              trama: bookData.trama,
+              numeroLetture: bookData.numeroLetture,
+              dataAggiunta: bookData.dataAggiunta,
+            });
+          })
+          .catch((error) => {
+            console.error('Error al cargar los detalles del libro:', error);
+          });
+      };
+
+      // Función para guardar los cambios en el libro
+    const saveBookChanges = (e) => {
+    e.preventDefault();
+    // Realiza una solicitud PUT al servidor para guardar los cambios en el libro
+    axios.put(`http://localhost:8080/books/${bookId}`, book)
+      .then((response) => {
+        console.log('Cambios guardados correctamente:', response.data);
+        // Podrías redirigir al usuario a otra página o mostrar un mensaje de éxito aquí
+      })
+      .catch((error) => {
+        console.error('Error al guardar los cambios:', error);
+      });
+  };
+
+    useEffect(() => {
+        loadBookDetails();
+    }, [bookId]);
+
   return (
     <>
     <div class="container">
         <h1>BookApp</h1>
         <h2>Books Details Page</h2>
-        <Link to="/users-books" className="icon-button">Back to Books</Link>
+        <Link to={`/users-books/${id}`} className="icon-button">Back to Books</Link>
     <div class="row">
         {/* Primera columna */}
         <div class="col-sm-6 user-list-container">
@@ -30,22 +78,22 @@ export default function BooksDetailsPage() {
                         <tbody>
                             <tr>
                                 <td style={{width: '12%'}}> 
-                                    <a href="#" class="user-link">Libro Test </a>
+                                    <a href="#" class="user-link">{book.titolo}</a>
                                 </td>
                                 <td>
-                                    <a href="#" class="user-link">Test Autore</a>
+                                    <a href="#" class="user-link">{book.autore}</a>
                                 </td>
                                 <td>
-                                    <a href="#">111123123123</a>
+                                    <a href="#">{book.codiceISBN}</a>
                                 </td>
                                 <td> 
-                                    <p >Trama interesante </p>
+                                    <p >{book.trama}</p>
                                 </td>
                                 <td> 
-                                    <p >1</p>
+                                    <p >{book.numeroLetture}</p>
                                 </td>
                                 <td> 
-                                    <p >22/11/2020</p>
+                                    <p >{book.dataAggiunta}</p>
                                 </td>
                                 
                             </tr>
@@ -60,7 +108,7 @@ export default function BooksDetailsPage() {
         {/* Formulario para agregar un nuevo usuario */}
             <h2>Edit Book</h2>
             
-          <form>
+            <form onSubmit={saveBookChanges}>
             <div className="form-group">
               <label htmlFor="nombre">Titolo</label>
               <input type="text" className="custom-input form-control " id="nombre" placeholder="Titolo" />
