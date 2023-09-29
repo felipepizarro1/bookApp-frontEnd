@@ -37,7 +37,7 @@ export default function BooksDetailsPage() {
     const saveBookChanges = (e) => {
     e.preventDefault();
     // Realiza una solicitud PUT al servidor para guardar los cambios en el libro
-    axios.put(`http://localhost:8080/books/${bookId}`, book)
+    axios.put(`http://localhost:8080/user/${id}/books/${bookId}`, book)
       .then((response) => {
         console.log('Cambios guardados correctamente:', response.data);
         // Podrías redirigir al usuario a otra página o mostrar un mensaje de éxito aquí
@@ -111,23 +111,23 @@ export default function BooksDetailsPage() {
             <form onSubmit={saveBookChanges}>
             <div className="form-group">
               <label htmlFor="nombre">Titolo</label>
-              <input type="text" className="custom-input form-control " id="nombre" placeholder="Titolo" />
+              <input type="text" className="custom-input form-control " name="titolo" value={book.titolo} onChange={(e) => setBook({ ...book, [e.target.name]: e.target.value })} id="nombre" placeholder="Titolo" />
             </div>
             <div className="form-group">
               <label htmlFor="apellido">Autore</label>
-              <input type="text" className="custom-input" id="apellido" placeholder="Autore" />
+              <input type="text" className="custom-input" name="autore" value={book.autore} onChange={(e) => setBook({ ...book, [e.target.name]: e.target.value })} id="apellido" placeholder="Autore" />
             </div>
             <div className="form-group">
               <label htmlFor="email">Codice ISBN</label>
-              <input type="number" className="custom-input" id="email" placeholder="1234567891234" />
+              <input type="number" className="custom-input" name="codiceISBN" value={book.codiceISBN} onChange={(e) => setBook({ ...book, [e.target.name]: e.target.value })} id="email" placeholder="1234567891234" />
             </div>
             <div className="form-group">
               <label htmlFor="apellido">Trama</label>
-              <input type="text" className="custom-input" id="apellido" placeholder="Trama" />
+              <input type="text" className="custom-input" name="trama" value={book.trama} onChange={(e) => setBook({ ...book, [e.target.name]: e.target.value })} id="apellido" placeholder="Trama" />
             </div>
             <div className="form-group">
               <label htmlFor="email">Numero Letture</label>
-              <input type="number" className="custom-input" id="email" placeholder="1" />
+              <input type="number" className="custom-input" name="numeroLetture" value={book.numeroLetture} onChange={(e) => setBook({ ...book, [e.target.name]: e.target.value })} id="email" placeholder="1" />
             </div>
             <button type="submit" className="btn btn-primary">Edit Book</button>
           </form>
